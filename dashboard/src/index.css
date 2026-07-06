@@ -1,0 +1,258 @@
+/* Global Dashboard Styles - Zerodha Kite theme overrides */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa !important;
+  color: #444;
+  overflow-x: hidden;
+}
+
+a {
+  color: #387ed1;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* TopBar Styling */
+.topbar-container {
+  height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 0 30px;
+}
+
+.index-ticker {
+  font-size: 12px;
+  color: #666;
+  margin-right: 25px;
+}
+
+.ticker-value.up {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.ticker-value.down {
+  color: #df514c;
+  font-weight: 600;
+}
+
+/* Sidebar WatchList */
+.watchlist-container {
+  width: 360px;
+  border-right: 1px solid #eee;
+  background-color: #fff;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  position: sticky;
+  top: 60px;
+}
+
+.watchlist-search {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.watchlist-search input {
+  font-size: 13px;
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
+
+.watchlist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f9f9f9;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.15s ease;
+}
+
+.watchlist-item:hover {
+  background-color: #fcfcfc;
+}
+
+.watchlist-item .actions {
+  display: none;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #fcfcfc;
+  padding-left: 10px;
+}
+
+.watchlist-item:hover .actions {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-action-buy {
+  background-color: #4184f3 !important;
+  color: white !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 4px 8px !important;
+  border-radius: 3px !important;
+  border: none;
+}
+
+.btn-action-sell {
+  background-color: #ff5722 !important;
+  color: white !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 4px 8px !important;
+  border-radius: 3px !important;
+  border: none;
+}
+
+/* Main Dashboard Panel */
+.main-workspace {
+  flex: 1;
+  padding: 30px 40px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+/* Custom Navigation Tabs */
+.menu-tab {
+  font-size: 14px;
+  color: #666;
+  padding: 15px 0;
+  margin-right: 30px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+  font-weight: 500;
+}
+
+.menu-tab:hover, .menu-tab.active {
+  color: #ff5722;
+  border-bottom-color: #ff5722;
+}
+
+/* Summary Cards */
+.summary-card {
+  padding: 25px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.summary-value {
+  font-size: 32px;
+  font-weight: 300;
+  margin-top: 10px;
+  color: #444;
+}
+
+/* Table overrides */
+.table-trading {
+  font-size: 13px;
+  color: #444;
+}
+
+.table-trading th {
+  font-weight: 500;
+  color: #999;
+  border-bottom: 1px solid #eee;
+  padding: 12px 10px;
+}
+
+.table-trading td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #f5f5f5;
+  vertical-align: middle;
+}
+
+.text-profit {
+  color: #4caf50 !important;
+  font-weight: 500;
+}
+
+.text-loss {
+  color: #df514c !important;
+  font-weight: 500;
+}
+
+/* Buy Sell Window Absolute Overlay */
+.buy-action-overlay {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 380px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border: 1px solid #ccc;
+  z-index: 1000;
+  overflow: hidden;
+  animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.overlay-header {
+  padding: 15px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.overlay-header.buy {
+  background-color: #4184f3;
+}
+
+.overlay-header.sell {
+  background-color: #ff5722;
+}
+
+.sparkline-canvas {
+  width: 60px;
+  height: 20px;
+  opacity: 0.7;
+}
+
+.pulse-glowing {
+  width: 8px;
+  height: 8px;
+  background-color: #4caf50;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  animation: pulseGlow 1.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}

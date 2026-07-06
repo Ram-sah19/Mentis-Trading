@@ -1,104 +1,82 @@
-# Zerodha Clone - Mentis Trading Platform
+# Zerodha MERN Trading Clone
 
-A modern, responsive, and visually appealing clone of the **Zerodha** trading and investment platform. This project mimics the layout, pages, and overall design of Zerodha, built using React, React Router, and clean CSS styling.
-
----
-
-## 🚀 Live Repository
-This project is hosted on GitHub: [Ram-sah19/Mentis-Trading](https://github.com/Ram-sah19/Mentis-Trading)
+This project is a high-fidelity full-stack replica of Zerodha's trading ecosystem, featuring a responsive marketing landing page, an Express.js & MongoDB backend server, and a premium real-time simulation trading dashboard (Kite clone) built with React and Chart.js.
 
 ---
 
-## 🛠️ Tech Stack & Libraries
-- **Frontend Core:** React (v19.x)
-- **Routing:** React Router DOM (v7.x)
-- **Styling:** Vanilla CSS (responsive grid layout, custom typography, animations)
-- **Tooling:** React Scripts (Create React App environment)
-
----
-
-## ✨ Features
-1. **Interactive Navigation & Layout:** 
-   - A clean, sticky header/navbar with drop-down layout matching Zerodha.
-   - Comprehensive footer with links to disclaimers, company info, and terms.
-2. **Dynamic Client-Side Routing:**
-   - Single-page application architecture using React Router for seamless navigation.
-3. **Structured Landing Pages:**
-   - **Home:** Hero section, awards section, custom product promo, and CTA banners.
-   - **About:** Details about the company philosophy, background, and key management team.
-   - **Products:** Detailed view of Kite, Console, Coin, Varsity, and API services with download links.
-   - **Pricing:** Clear pricing table detailing Free Equity Delivery, Intraday, and Mutual Funds brokerage charges.
-   - **Support:** A knowledge-base search bar interface with categorized help topics.
-4. **404 Custom Page:** Friendly fallback page for any unmatched routes.
-
----
-
-## 📁 Project Structure
+## Folder Structure
 
 ```text
 Zerodha/
-├── frontend/                  # React Frontend Application
-│   ├── public/                # Static public assets (icons, images)
-│   ├── src/
-│   │   ├── landing_page/      # Core UI components and pages
-│   │   │   ├── home/          # Home Page Components (Hero, Awards, etc.)
-│   │   │   ├── about/         # About Page Components
-│   │   │   ├── products/      # Product Page Components
-│   │   │   ├── pricing/       # Pricing Page Components
-│   │   │   ├── support/       # Support Page Components
-│   │   │   ├── signup/        # Signup Page Setup
-│   │   │   ├── Footer.js      # Global Footer
-│   │   │   ├── Navbar.js      # Global Navigation Bar
-│   │   │   ├── Notfound.js    # 404 Fallback page
-│   │   │   └── Openaccount.js # Reusable Open Account CTA component
-│   │   ├── index.css          # Global CSS stylesheet
-│   │   └── index.js           # App mounting point and React Router config
-│   ├── package.json           # Frontend dependencies & npm scripts
-│   └── package-lock.json      # Dependency lock file
-├── backend/                   # Reserved for backend services (API/Database)
-├── push_to_github.bat         # Helper script for synchronizing nested git commits
-└── README.md                  # Project documentation (this file)
+├── backend/            # Express Server APIs & MongoDB Schemas
+│   ├── model/          # Mongoose collections (Holdings, Positions, Orders)
+│   ├── .env            # Server configuration (PORT, MONGO_URI)
+│   ├── index.js        # Main entry point (Port: 3002)
+│   └── seed.js         # Database seeding script
+├── dashboard/          # Kite Trading Dashboard Application
+│   ├── src/            # React codebase & Chart.js allocations
+│   ├── index.html      # SPA root template
+│   ├── vite.config.js  # Vite server configuration (Port: 3001)
+│   └── package.json    
+└── frontend/           # Zerodha Marketing Landing Pages (Port: 3000)
 ```
 
 ---
 
-## 🏃 Getting Started
+## Get Started
 
-### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
+Ensure that **MongoDB** is running locally on your machine (`mongodb://127.0.0.1:27017`) or update the `MONGO_URI` environment string in `backend/.env` to point to your MongoDB Atlas cluster.
 
-### Installation & Launch
+### 1. Seed & Start Backend API Server
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/Ram-sah19/Mentis-Trading.git
-   cd Mentis-Trading
-   ```
+Open a terminal window and run:
+```bash
+cd backend
 
-2. **Navigate to the Frontend Directory:**
-   ```bash
-   cd frontend
-   ```
+# Install express, mongoose, cors, nodemon
+npm install
 
-3. **Install Dependencies:**
-   ```bash
-   npm install
-   ```
+# Seed the database collections with mock stocks (Reliance, TCS, Infosys, etc.)
+node seed.js
 
-4. **Start the Development Server:**
-   ```bash
-   npm start
-   ```
-   The application will run locally on [http://localhost:3000](http://localhost:3000).
+# Start Express server on http://localhost:3002
+npm run dev
+```
+
+### 2. Start Kite Trading Dashboard
+
+Open a second terminal window and run:
+```bash
+cd dashboard
+
+# Install react, react-router-dom, react-chartjs-2, chart.js, axios
+npm install
+
+# Run trading terminal on http://localhost:3001
+npm run dev
+```
+
+### 3. Start Marketing Landing Page
+
+Open a third terminal window and run:
+```bash
+cd frontend
+
+# Install bootstrap, fontawesome, react-router-dom
+npm install
+
+# Run marketing portal on http://localhost:3000
+npm start
+```
 
 ---
 
-## 📤 Version Control Guide
+## API Documentation
 
-If you add new changes and need to push all codes to GitHub, you can use the custom helper batch script located at the root of the project:
-
-```cmd
-.\push_to_github.bat
-```
-
-*(This automatically ensures that any nested `.git` directories inside the `frontend` subdirectory are cleaned up, avoiding empty submodule folders on your remote repository).*
+- `GET http://localhost:3002/allHoldings` - Retrieves all seeded long-term portfolio stock items.
+- `GET http://localhost:3002/allPositions` - Retrieves all current-session open trading positions.
+- `GET http://localhost:3002/allOrders` - Retrieves chronological transaction execution logs.
+- `POST http://localhost:3002/newOrder` - Submits a new market order:
+  - Accepts JSON payload: `{ "name": "INFY", "qty": 5, "price": 1385.10, "mode": "BUY" }`
+  - Saves transaction to order log.
+  - Dynamically updates active open positions (increases quantity on BUY, decrements/closes on SELL).

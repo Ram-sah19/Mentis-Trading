@@ -1,0 +1,23 @@
+# Task Checklist: Backend & Dashboard Setup
+
+- [x] **1. Create Node.js & Express Backend**
+  - [x] Create `backend/package.json` and `.env` configuration file
+  - [x] Create Mongoose Models (`HoldingsModel.js`, `PositionsModel.js`, `OrdersModel.js`)
+  - [x] Create seeding script `seed.js` populated with real-world stock listings
+  - [x] Write main Express server application `index.js` exposing REST endpoints
+- [x] **2. Create Kite Dashboard Frontend App**
+  - [x] Create dashboard scaffold (`package.json`, `vite.config.js`, `index.html`)
+  - [x] Create top header navigation and indices displays (`TopBar.js`)
+  - [x] Create side menu panels (`Menu.js`)
+  - [x] Create watchlist sidebar panel with stock lists and actions (`WatchList.js`)
+  - [x] Create dynamic order overlay modal window (`BuyActionWindow.js`)
+  - [x] Create portfolio overview summary component (`Summary.js`)
+  - [x] Create stock holdings table component (`Holdings.js`)
+  - [x] Integrate allocations pie/doughnut visualization (`DoughnutChart.js`)
+  - [x] Create open positions grid component (`Positions.js`)
+  - [x] Create orders execution transaction ledger (`Orders.js`)
+  - [x] Build layout orchestrator component (`Home.js`)
+- [x] **3. Verification & Cleanup**
+  - [x] Verify endpoints and mock database population
+  - [x] Verify Chart.js canvas elements
+  - [x] Document project instructions in root README.md
